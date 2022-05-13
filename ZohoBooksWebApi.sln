@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32414.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZohoBooksWebApi", "ZohoBooksWebApi\ZohoBooksWebApi.csproj", "{A9D07E40-9862-44C9-95C4-50AC2CE23144}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoho.Books.Api", "Zoho.Books.Api\Zoho.Books.Api.csproj", "{855E77A2-C088-4727-94B9-22C3593797BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9D07E40-9862-44C9-95C4-50AC2CE23144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9D07E40-9862-44C9-95C4-50AC2CE23144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9D07E40-9862-44C9-95C4-50AC2CE23144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9D07E40-9862-44C9-95C4-50AC2CE23144}.Release|Any CPU.Build.0 = Release|Any CPU
+		{855E77A2-C088-4727-94B9-22C3593797BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{855E77A2-C088-4727-94B9-22C3593797BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{855E77A2-C088-4727-94B9-22C3593797BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{855E77A2-C088-4727-94B9-22C3593797BF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {637D245F-53F2-4AAC-A04B-75A90B76AAB7}
+	EndGlobalSection
+EndGlobal
