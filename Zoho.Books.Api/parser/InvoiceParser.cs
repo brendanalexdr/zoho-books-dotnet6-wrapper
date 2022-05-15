@@ -12,90 +12,90 @@ namespace zohobooks.parser;
 /// </summary>
 public class InvoiceParser
 {
-    internal static string getMessage(HttpResponseMessage responce)
+    internal static async Task<string> GetMessageAsync(HttpResponseMessage responce)
     {
         string message = "";
-        var jsonObj = ZohoSerializer.Deserialize<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+        var jsonObj = await ZohoSerializer.DeserializeAsync<Dictionary<string, object>>(await responce.Content.ReadAsStringAsync());
         if (jsonObj.ContainsKey("message"))
             message = jsonObj["message"].ToString();
         return message;
     }
 
-    internal static InvoicesList getInvoiceList(HttpResponseMessage responce)
+    internal static async Task<InvoicesList> GetInvoiceListAsync(HttpResponseMessage responce)
     {
         var invoiceList = new InvoicesList();
-        var jsonObj = ZohoSerializer.Deserialize<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+        var jsonObj = await ZohoSerializer.DeserializeAsync<Dictionary<string, object>>(await responce.Content.ReadAsStringAsync());
         if (jsonObj.ContainsKey("invoices"))
         {
-            var invoicesArray = ZohoSerializer.Deserialize<List<object>>(jsonObj["invoices"].ToString());
+            var invoicesArray = await ZohoSerializer.DeserializeAsync<List<object>>(jsonObj["invoices"].ToString());
             foreach (var invoiceObj in invoicesArray)
             {
                 var invoice = new Invoice();
-                invoice = ZohoSerializer.Deserialize<Invoice>(invoiceObj.ToString());
+                invoice = await ZohoSerializer.DeserializeAsync<Invoice>(invoiceObj.ToString());
                 invoiceList.Add(invoice);
             }
         }
         if (jsonObj.ContainsKey("page_context"))
         {
             var pageContext = new PageContext();
-            pageContext = ZohoSerializer.Deserialize<PageContext>(jsonObj["page_context"].ToString());
+            pageContext = await ZohoSerializer.DeserializeAsync<PageContext>(jsonObj["page_context"].ToString());
             invoiceList.page_context = pageContext;
         }
         return invoiceList;
     }
 
-    internal static Invoice getInvoice(HttpResponseMessage responce)
+    internal static async Task<Invoice> GetInvoiceAsync(HttpResponseMessage responce)
     {
         var invoice = new Invoice();
-        var jsonObj = ZohoSerializer.Deserialize<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+        var jsonObj = await ZohoSerializer.DeserializeAsync<Dictionary<string, object>>(await responce.Content.ReadAsStringAsync());
         if (jsonObj.ContainsKey("invoice"))
         {
-            invoice = ZohoSerializer.Deserialize<Invoice>(jsonObj["invoice"].ToString());
+            invoice = await ZohoSerializer.DeserializeAsync<Invoice>(jsonObj["invoice"].ToString());
         }
         return invoice;
     }
 
-    internal static PaymentList getPaymentsList(HttpResponseMessage responce)
+    internal static async Task<PaymentList> GetPaymentsListAsync(HttpResponseMessage responce)
     {
         var paymentList = new PaymentList();
-        var jsonObj = ZohoSerializer.Deserialize<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+        var jsonObj = await ZohoSerializer.DeserializeAsync<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
         if (jsonObj.ContainsKey("payments"))
         {
-            var paymentsArray = ZohoSerializer.Deserialize<List<object>>(jsonObj["payments"].ToString());
+            var paymentsArray = await ZohoSerializer.DeserializeAsync<List<object>>(jsonObj["payments"].ToString());
             foreach (var paymentObj in paymentsArray)
             {
                 var payment = new Payment();
-                payment = ZohoSerializer.Deserialize<Payment>(paymentObj.ToString());
+                payment = await ZohoSerializer.DeserializeAsync<Payment>(paymentObj.ToString());
                 paymentList.Add(payment);
             }
         }
         return paymentList;
     }
 
-    internal static CreditNoteList getCredits(HttpResponseMessage responce)
+    internal static async Task<CreditNoteList> GetCreditsAsync(HttpResponseMessage responce)
     {
         var creditList = new CreditNoteList();
-        var jsonObj = ZohoSerializer.Deserialize<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
+        var jsonObj = await ZohoSerializer.DeserializeAsync<Dictionary<string, object>>(responce.Content.ReadAsStringAsync().Result);
         if (jsonObj.ContainsKey("credits"))
         {
-            var paymentsArray = ZohoSerializer.Deserialize<List<object>>(jsonObj["credits"].ToString());
+            var paymentsArray = await ZohoSerializer.DeserializeAsync<List<object>>(jsonObj["credits"].ToString());
             foreach (var paymentObj in paymentsArray)
             {
                 var credit = new CreditNote();
-                credit = ZohoSerializer.Deserialize<CreditNote>(paymentObj.ToString());
+                credit = await ZohoSerializer.DeserializeAsync<CreditNote>(paymentObj.ToString());
                 creditList.Add(credit);
             }
         }
         return creditList;
     }
 
-    internal static UseCredits getUseCredits(HttpResponseMessage response)
+    internal static async Task<UseCredits> GetUseCreditsAsync(HttpResponseMessage response)
     {
         var useCredits = new UseCredits();
-        var jsonObj = ZohoSerializer.Deserialize<Dictionary<string, object>>(response.Content.ReadAsStringAsync().Result);
+        var jsonObj = await ZohoSerializer.DeserializeAsync<Dictionary<string, object>>(response.Content.ReadAsStringAsync().Result);
         if (jsonObj.ContainsKey("use_credits"))
         {
-            useCredits = ZohoSerializer.Deserialize<UseCredits>(jsonObj["use_credits"].ToString());
+            useCredits = await ZohoSerializer.DeserializeAsync<UseCredits>(jsonObj["use_credits"].ToString());
         }
         return useCredits;
     }
